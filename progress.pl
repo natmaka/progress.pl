@@ -120,7 +120,7 @@ while ($running->()) {
 		print STDERR map { "\e[A" } @lengths;
 		for (my $i=0; $i <= $#lines or $i <= $#lengths; $i++) {
 		next if ( (!defined $lines[$i]) or (!defined $lengths[$i]));
-    printf STDERR "%-*s%d\n", $lengths[$i], $lines[$i];
+    printf STDERR "%-*s\n", $lengths[$i], $lines[$i];
   }
 }
   Time::HiRes::sleep 0.5;
