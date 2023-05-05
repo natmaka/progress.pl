@@ -47,7 +47,6 @@ if (not $#ARGV and $ARGV[0] =~ /^\d+/) {
   };
 }
 
-
 sub prettytime {
   my $t = shift;
   if ($t >= 3600) {
@@ -60,12 +59,11 @@ sub prettytime {
     return int($t+0.99)."s";
   }
 }
+
 Time::HiRes::sleep 0.1;
 my @lines;
 my $size=-1;
 my $buf=-1;
-my $previous_size=-1;
-my $previous_buf=-1;
 while ($running->()) {
   my @f = glob "/proc/$child/fd/*";
   my @lengths = map { length($_) } @lines;
@@ -116,13 +114,11 @@ while ($running->()) {
       }
     }
   } @f;
-	if (($size ne $previous_size) or ($previous_buf ne $buf)) {
-		print STDERR map { "\e[A" } @lengths;
-		for (my $i=0; $i <= $#lines or $i <= $#lengths; $i++) {
+	print STDERR map { "\e[A" } @lengths;
+	for (my $i=0; $i <= $#lines or $i <= $#lengths; $i++) {
 		next if ( (!defined $lines[$i]) or (!defined $lengths[$i]));
     printf STDERR "%-*s\n", $lengths[$i], $lines[$i];
-  }
-}
-  Time::HiRes::sleep 0.5;
+	}
+	Time::HiRes::sleep 0.5;
 }
 $exit->();
