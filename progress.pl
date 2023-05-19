@@ -13,6 +13,7 @@ my $start = Time::HiRes::time();
 
 my ($child, $running, $exit);
 
+die "I need an argument, either a PID or an executable name" if ($#ARGV == -1);
 if (not $#ARGV and $ARGV[0] =~ /^\d+/) {
   $child = 1*$ARGV[0];
   $running = sub { kill(0, $child) > 0 };
