@@ -16,8 +16,8 @@ Most programs do their operations sequentially over whole file. This tool reads
 as well as percentage and estimated time to finish operation. (Start of operation
 is considered to be the start of the process.)
 
-
 See also
 --------
 
-https://github.com/Xfennec/progress
+* [Pipe Viewer (pv), option '-d'](http://www.ivarch.com/programs/pv.shtml)
+* https://github.com/Xfennec/progress
